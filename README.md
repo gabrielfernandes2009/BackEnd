@@ -2,7 +2,7 @@
 
 Prof. Diogo Barbosa
 
-Escola SENAI Americana 
+Escola SENAI Americana
 
 2º Semestre 2026
 
@@ -35,7 +35,7 @@ O back-end é a parte de um site ou aplicativo que o usuário não vê, mas que 
 - Garante que os dados de um usuário não apareçam para outro;
 - Faz o sistema suportar muitas pessoas usando ao mesmo tempo, sem travar.
 
-As principais linguagens utilizadas no desenvolvimento back-end são PHP, JavaScript/TypeScript, Python, Java, Kotlin, Go (Golang), C# e Rust. 
+As principais linguagens utilizadas no desenvolvimento back-end são PHP, JavaScript/TypeScript, Python, Java, Kotlin, Go (Golang), C# e Rust.
 
 O backend é o "cérebro" oculto de um site ou aplicativo. Ele roda em um servidor e cuida de tudo o que o usuário não vê na tela.
 
@@ -47,9 +47,9 @@ O backend é o "cérebro" oculto de um site ou aplicativo. Ele roda em um servid
 
 **O Mercado de Trabalho em Back-end**
 
-O desenvolvimento Back-end é uma das áreas mais cruciais da Tecnologia da Informação. 
+O desenvolvimento Back-end é uma das áreas mais cruciais da Tecnologia da Informação.
 
-- Com a transformação digital acelerada, empresas de todos os portes e setores dependem de infraestruturas sólidas e seguras. 
+- Com a transformação digital acelerada, empresas de todos os portes e setores dependem de infraestruturas sólidas e seguras.
 
 - Setores de Atuação: Bancos, hospitais, e-commerces, logística, indústrias, startups e órgãos públicos utilizam Back-end para suportar suas operações críticas.
 
@@ -121,7 +121,7 @@ Os tipos de de requisição HTTP indicam a ação que o usuário deseja executar
 
 ##### Contextualizando o PHP
 
-O PHP de fato é uma das linguagens de programação mais populares da atualizada. Ela permite que você crie aplicações web robustas, de uma maneira muito simplifica e direto ao ponto. Sem contar que a linguagem traz diversos recursos que facilitam e aceleram o processo de desenvolvimento de sites e sistemas para web. E além do mais, ela ainda tem um ótimo ecossistema, uma excelente comunidade e um grande mercado de trabalho. 
+O PHP de fato é uma das linguagens de programação mais populares da atualizada. Ela permite que você crie aplicações web robustas, de uma maneira muito simplifica e direto ao ponto. Sem contar que a linguagem traz diversos recursos que facilitam e aceleram o processo de desenvolvimento de sites e sistemas para web. E além do mais, ela ainda tem um ótimo ecossistema, uma excelente comunidade e um grande mercado de trabalho.
 
 ##### Criando Minha Primiera Aplicação em PHP
 
@@ -176,8 +176,8 @@ obs: O Operador % é o melhor amigo de um programador, permite ordenar listas e 
 
 | Nomes | Operador | Exemplo | Resultado |
 | - | - | - | - |
-| Iguais | == | "10"==10 | true | 
-| Igualdade Estrita | === | "10"===10 | false | 
+| Iguais | == | "10"==10 | true |
+| Igualdade Estrita | === | "10"===10 | false |
 | Diferente | != | "10"!=10 | false |
 | Diferença Estrita | !== | "10"!==10 | true |
 | Maior que | > | 18 > 18 | false |
@@ -199,16 +199,17 @@ obs: O Operador % é o melhor amigo de um programador, permite ordenar listas e 
     - !true => false
     - !false => true
 
-### Semana 3 - Estrutura de Controle de Dados (Comdicionais e Repetição)  
-- **Conteúdo**: Estruturas `if`, `else`, `elseif`, operadores ternários, `match` => substituto do `swicth/case`, loops `for`, `while`, `do-while` e `foreach`
- 
- #### Estreuture de Comtrole de dados ajudam no processo de automação em programas e sistemas 
+### Semana 3 - Estrutura de Controle de Dados ( Condicionais e Repetição)
 
- ##### Condicionais (IF, ELSE, ELSEIF)
+- **Conteúdo**: Estruturas `if`, `else`, `elseif`, operadores ternários, `match` => substituto do `swicth/case`, loops `for`, `while`, `do-while` e `foreach`
+
+#### Estrutura de Controle de Dados ajudam no processo de automatização em programas e sistemas
+
+##### Condicionais (IF, ELSE, ELSEIF)
 
 **Forma de Uso**:
 
-- Uso do `if` apenas: 
+- Uso do `if` apenas:
 Exemplo: aplicar um desconto de 10% em comrpas acima de 100 Reais;
 
 ```mermaid
@@ -220,12 +221,35 @@ graph LR
 
 ```php
 if ($valorCompra > 100) {
-    $valorCompra = $valorCompra * 0.1
+    $valorCompra = $valorCompra * 0.9;
 }
 ```
 
 - Uso do `if` e do `else`
 Exemplo: Aplicar um desconto de 10% para compras acima de 100 reais e 5% para as demais compras
+
+```mermaid
+
+graph LR
+
+    A[Comando] --> B{Condição}
+    B --> |true| C[Ação 1]
+    B --> |false| D[Ação 2]
+
+```
+
+```php
+
+if($valorCompra > 100) {
+    $valorFinal = $valorCompra*0.9;
+} else{
+    $valorFinal = $valorCompra*0.95;
+}
+
+```
+
+- Uso do `elseif` (Encadeado)
+Exemplo: Comrpas acima de 200 reais tem 15% de desconto, acimda de 100 reais tem 10% de desconto e outras 5% de desconto
 
 ```mermaid
 
@@ -238,26 +262,25 @@ graph LR
 
 ```
 
-```php 
+```php
 
-if($valorCompra > 200){
+if($valorCompra > 200) {
     $valorFinal = $valorCompra*0.85;
 } elseif($valorCompra >100) {
     $valorFinal - $valorCompra*0.9;
 } else {
     $valorFinal = $valorCompra*0.95;
 }
-  
 
- ```  
+```
 
-*obs*: sempre usar `elseif` para situações que precisam de mais de uma condição, ou seja, fazer encadeamento das condições. 
+*obs*: sempre usar `elseif` para situações que precisam de mais de uma condição, ou seja, fazer encadeamento das condições.
 
-- Uso errado do do if 
+- Uso **ERRADO** do if
 
-Não Fazer o Encadeamento de Condicionais 
+Não Fazer o Encadeamento de condicionais
 
-```php  
+```php
 
 if($valorCompra > 200) {
     $valorFinal = $valorCompra*0.85;
@@ -269,24 +292,26 @@ if($valorCompra < 100) {
     $valorFinal = $valorCompra*0.95;
 }
 
-``` 
+```
+
 
 
 
 ##### Operadores Ternários
-Um atalho para a estrutura comdicional `if/else ` , normalmente escrito em uma unica linha de codigo. 
- 
- ` condição  ? verdadeira : falso `
+Um atalho para a estrutura condicional `if/else`, normalmente escrito em uma unica linah de código.
 
-Perfeito para decições curtas de uma linha de comando 
+` condição  ? verdadeira : falso `
+
+Perfeito para decisões curtas de uma linha de comando
 Exemplo: Verificar se Pessoa é Maior de Idade (18)
 
-```php 
+```php
 
 $idade = 20;
 //O formato é : (Condição) ? Verdadeiro : Falso;
 
-$status = ($idade >= 18) ? "Maior de Idade" : "Manor de Idade";
+$status = ($idade >= 18) ? "Maior de Idade" : "Menor de Idade";
+$status2 = ($idade<18) ? "Criança" : ($idade<60) ? "Adulto" : "Idoso";
 
 ```
 
@@ -304,14 +329,14 @@ graph TD
     B --> F[Ação 4]
     B --> G[...]
     B --> H[Ação default]
-    
-    ```
-
-
-  ```php 
    
-   $diasemana = date("week"); //pega o dia da semana em formato Numerico  
-//transformardia da esmana em Formato Texto (Domingo, segunda)   
+```
+
+```php
+
+$diaSemana = date("Week"); //pega o Dia da Semana em Formato Numérico
+
+//trasnformar dia da Semana em Formato Texto (Domingo, Segunda,...)
 
 $nomeDiaSemana = match($diaSemana){
     "0" => "Domingo",
@@ -321,7 +346,81 @@ $nomeDiaSemana = match($diaSemana){
     "4" => "Quinta",
     "5" => "Sexta",
     "6" => "Sábado",
-    "default" => "Dia Inválido"
+    default => "Dia Inválido"
 };
 
-``` 
+```
+
+---
+
+##### Laços de Repetição
+
+Um laço de repetição faz com que, um bloco de códigos rode várias vezes, até que uma condição mande parar.
+
+- O Laço `while` (Enquanto)
+
+Ele verifica se a condição é verdadeira ANTES de entrar no laço. Ideal quando você não sabe quantas vezes vai rodar o laço.
+
+```mermaid
+
+flowchart LR
+
+      A[Início] --> B{Condição}
+      B --true--> C[Executa o Laço]
+      C --> B
+      B --false--> D[Interrompe o Laço]
+
+```
+
+Exemplo: Jogo de Adivinhação de um número Secreto
+
+```php
+
+$numeroSecreto = 7;
+
+$tentativas = 0;
+
+while($tentativa != $numeroSecreto){
+      echo "Tente Novamente"
+      //vou pegar um número aleatório entre 1 e 10
+      $tentativa = rand(1,10);
+}
+
+echo " Acertou Misevi!!! o número secreto é $numeroSecreto";
+
+```
+
+- O Laço `do-while` (Faça-Enquanto)
+
+A diferença é que ele executa o bloco pelo menos uma vez, mesmo que a condição seja falsa desde o início, pois ele só pergunta no final
+
+```mermaid
+
+flowchart LR
+
+A([Início]) --> B[Executar Ação]
+B --> C{Condição}
+C --true--> B
+C --false--> D([Fim])
+
+```
+
+Exemplo: Jogo de Adivinhação
+
+```php
+
+$numeroSecreto = rand(1,10);
+
+do {
+    $tentativa = rand(1,10); //Simular um palpite aleatório
+   
+    if($tentativa == $numeroSecreto){
+      echo "Parabéns, acertou!!!;
+    }
+
+} while ($tentativa != $numeroSecreto);
+
+```
+
+obs: Uso ideal do `do-while`, Menus de sistema de solicitações de dados, sistemas interativos;
+

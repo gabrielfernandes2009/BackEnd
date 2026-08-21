@@ -67,9 +67,10 @@ match categoria.upper():
 
 
 
- def calcular_juros(categoria_cliente):
+ def calcular_juros($categoriacliente):
 
-    match categoria.upper():
+    $juros = match ($categoriacliente) 
+    }
 
         case 'A':
 
@@ -113,7 +114,7 @@ print(f"Valor Inicial: R$ {valor_inicial:.2f}")
 
     print("Mês\tValor da Dívida")
 
-    for mes in range(1, 12):        
+    for (1, 12):        
 
 
 
@@ -179,7 +180,7 @@ def projetar_divida(valor_inicial, categoria_cliente):
 
    
 
-    for mes in range(1, 13):
+    for (1, 13):
 
         valor_atual += valor_atual * taxa
 

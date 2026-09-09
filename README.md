@@ -830,9 +830,50 @@ echo var_dump($frutas);
 //Mostra Tudo: tipo de dados, o tamanho e o valor
 ```
 
+---
 
+### Semana 6 - Processamento HTTP e Formulários Web
 
+#### Anatomia de um Formulário HTML para BackEnd
 
+Antes de PHP processar qualquer informação, precisamos coletar informações no FrontEnd através de um `<form>`
+
+**Exemplo de `<form>` HTML**
+
+```html
+<form action="processa.php" method="POST">
+    <label>Nome Completo </label>
+    <input type="text" id="campoNome" name="nomeUsuario" placeholder="Digite seu nome">
+    <button type="submit">Cadastrar</button>
+</form>
+```
+
+**O 3 Pilares do Formulário**
+1. action="processa.php" -> O Destino: Define qual script PHP no servidor receberá os dados.
+2. method="POST" -> O Transporte: Define a via de protocolo HTTP usada (GET ou POST).
+3. name="nomeUsuarios" -> A Etiqueta do Dado: É o nome da chave que o PHP usará no array associativo ($POST["nomeUsuario"]).
+
+> obs: Nunca Confundir `id` com `name` no input, o PHP ignora o `id`
+
+#### O Protocolo HTTP
+
+Quando o Usuário clica no botão `type="submit"`, o navegador compila todas as informações dos campos preenchidos e dispara um pacote de comunicação padronizado pelo **Protocolo HTTP(Hypertext Transfer Protocol)**
+
+**O Formato de Tranferencia** 
+- **Metodo GET**: solicitar informaçoes publicas e realizar buscas, mas altamente 
+arriscada para dados privados. 
+
+- **Metodo POST**: As infomaçoes viajam quadradas dentro do protocolo  
+
+### GET vs POST 
+
+1. O metodo GET é ultilizado quando a intenção do cliente é **buscar ou filtrar dados** sem alterar dados sem alterar o estado do servidor. Os dados enviados via GET são anexados diretamente ao final da URL na forma de uma **Query String** 
+
+2. O medoto POST (Envio de cargas uteis e Mutações) 
+
+O metodo POST é ultilizado quando o formulario envia  dados que devem ser processados para **Crar ou modificar registros** no sistema (ex: cadastro de usuarios, finalizaçoes de compras, upload de arquivos) 
+
+### Como os Metodos funcionam no php (´$_GET´,`$_POST, $_SERVER) - As SuperGlobaisp 
 
 
 

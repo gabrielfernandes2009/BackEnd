@@ -8,8 +8,10 @@ $usuario = [
     "premium" => true
 ];
  
-$estrela = $usuario["premium"] 
-echo "<div>" 
-echo "<h2>" . $usuario["nome"] 
-echo "<p>Idade: " . $usuario["idade"] . " anos </p>"; 
-echo <p>Localização: " . $usuario["cidade"]</p>
+$estrela = $usuario["premium"] ? " ⭐" : "";
+
+echo "<div>";
+echo "<h2>" . $usuario["nome"] . $estrela . "</h2>";
+echo "<p>Idade: " . $usuario["idade"] . " anos</p>";
+echo "<p>Localização: " . $usuario["cidade"] . " - " . $usuario["estado"] . "</p>";
+echo "</div>";

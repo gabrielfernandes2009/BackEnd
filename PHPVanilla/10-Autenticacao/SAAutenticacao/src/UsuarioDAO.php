@@ -17,7 +17,7 @@ final class UsuarioDAO{
     public function cadastrar(
                 string $nome, string $email, string $senha, string $perfil = "OPERADOR"
                 ):bool{
-        $sql = "INSERT INTO usarios(nome, email, senha_hash, perfil) 
+        $sql = "INSERT INTO usuarios(nome, email, senha_hash, perfil) 
                 VALUES (:nome, :email, :hash, :perfil)";
         $stmt = $this->pdo->prepare($sql);
         //fazer o algoritmo de hash da senha
@@ -33,11 +33,23 @@ final class UsuarioDAO{
 
     //buscar por Email
     public function buscarPorEmail(string $email): ?array{
-        $sql = "SELECT * FROM usarios WHERE email = :email";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([":email" => strtolower(trim($email))]);
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $usuario ?: null; //se não encontrar retorna null
+        $sql = "SELECT * FROM usuarios WHERE email = :email AND ativo = TRUE"; 
+        $stmt = $this -> pdo -> prepare($sql);
+        $stmt -> bindValue(":email" , strtolower(trim($email)), PDO::PARAM_STR);
+        $stmt -> execute(); 
+        $usuario = $stmt -> fetch(PDO::FETCH_ASSOC);
+        return $usuario ?: null;
     }
+
+    //verificar se email existe => evitar dois cadastros com o mesmo email
+    public function emailExiste(string $email): bool{
+        $sql = "SELECT email FROM usuarios WHERE email = :email";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":email", strtolower(trim($email)), PDO::PARAM_STR);
+        $stmt -> execute();
+
+        return (bool)$stmt->fetchColumn(); //(bool) -> CAST => garante que o retorno da informação vai ser uma booleana
+    }
+   
 
 }

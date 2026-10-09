@@ -54,7 +54,41 @@ db_user     = postgres
 db_pass     = postgres
 ```
 
+## Camada de Acesso a Dados (`src/UsuarioDAO.php`)
 
- ### obs 
+Isolamos as operações de busca e cadastro de usuários, em uma classe DAO
 
- criado no banco biblioteca escola 
+> obs: cadastro de usuário é realizado com  a função `password_hash()`
+
+UsuarioDAO.php:
+
+- cadastrar ( com hash de senha);
+- busca por email (busca os dados do usuário)
+- verificar se email já existe no cadastro (bool)
+
+## O serviço de Autenticação (`src/AuthService.php`)
+
+classe que ira criar o ciclo de vida da sessão do usuário : cookies e a sessão
+
+>obs: classe do tipo static ( não existe instanciamento de objetos)
+
+
+AuthService.php
+
+- iniciarSessaoSegura() -> passa as informações para o Cookie
+- autenticar() -> passa as informações para a superglobal
+- sessaoExpirada() => verifica o tempo de inatividade
+- sessionDestroy() => finaliza as sessao e limpas os cookies do navegador
+
+## Middleware Intercepador (`src/guard.php`)
+
+bloqueio visitantes não autenticados ou sessões expiradas
+
+- verificação de sessão 
+- verificação de expiração
+
+## Criação das Telas
+
+### Tela de Cadastro (`cadastro.php`)
+
+

@@ -1905,4 +1905,60 @@ flowchart TD
 ```
 
 >[!OBS]
->`try/catch` é o mecanismo de captura de exceções do PHP. Ele permite que você trate erros de forma inteligente, mantendo a integridade do sistema e fornecendo feedback claro ao usuario 
+>`try/catch` é o mecanismo de captura de exceções do PHP. Ele permite que você trate erros de forma inteligente, mantendo a integridade do sistema e fornecendo feedback claro ao usuário.
+
+---
+
+### Semana 12 - Arquitetura MVC Artesanal, AutoLoad com Composer e Front Controller
+
+**Tema**: Padrão Arquitetural Model-View-Controller (MVC) cm BackEnd, Gerenciamento de Dependências com Composer, Autoloading PSR-4, Resolução Automática de NameSpace, Padrão Front Controller, Roteador HTTP Artesanal.
+
+#### **1. O Fim do `Codigo Espaguete`**
+
+Quando enconrtamos uma pdrão de código desastroso e caótico, sem arquiterua modernas de desenvolvimento, usamos o termo `código espaguete`. 
+
+Exemplo de Código Espaguete:
+
+```php
+<?php
+// 1. Múltiplos includes manuais frágeis
+require_once __DIR__ . '/../config/conexao.php';
+require_once __DIR__ . '/../classes/Produto.php';
+require_once __DIR__ . '/../classes/Sessao.php';
+require_once __DIR__ . '/../classes/Auditoria.php';
+
+// 2. Mistura de lógica de banco e processamento HTTP
+$pdo = Conexao::getInstancia();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = $_POST['nome'];
+    $stmt = $pdo->prepare("INSERT INTO produtos (nome) VALUES (?)");
+    $stmt->execute([$nome]);
+}
+$produtos = $pdo->query("SELECT * FROM produtos")->fetchAll();
+?>
+<!-- 3. HTML misturado com PHP procedural na mesma folha -->
+<html>
+<body>
+    <h1>Catálogo</h1>
+    <?php foreach($produtos as $p): ?>
+        <p><?= $p['nome'] ?></p>
+    <?php endforeach; ?>
+</body>
+</html>
+```
+
+**Os Problemas Críticos do Código Espaguete**
+
+1. *Acoplamento Máximo*: Se você mudar o layout visual, corre o risco de quebrar uma query SQL. Se alterar uma coluna do banco, precisa reescrever o arquivo visual.
+2. *Fragilidade de Inclusões (`required_once`)*: Se um arquivo fro movido de pasta, todas as chamadas `require_onde`quebram com erros fatais de arquivo não encontrado.
+3. *Exposição de Segurança*: Se os arquivos PHP estiverem na raiz acessível do servidor web, qualquer usuário malicioso pode tentar acessar scripts internos digitando `http://site.com/config/conexao.php`
+
+```mermaid
+flowchart TD
+    subgraph Caotico ["Código Espaguete Tradicional (Desorganizado)"]
+        arq["produtos.php<br/> * Consultas SQL Diretas<br/> * HTML e TAGs CSS<br/>*10 required_once manuais"]
+    end
+
+    style Caotico fill:#fee2e2, stroke:#dc2626, stroke-width:2px, color:#7f1d1d
+
+```

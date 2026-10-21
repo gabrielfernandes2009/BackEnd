@@ -6,14 +6,30 @@
 SAPOO/
 ├── src/
 │   ├── Dominio/
-│   │   ├── Titular.php            <- Entidade imutável do correntista
-│   │   ├── ContaBancaria.php      <- Superclasse abstrata
-│   │   ├── ContaCorrente.php      <- Subclasse com cheque especial e taxa
-│   │   └── ContaPoupanca.php      <- Subclasse com rendimento e sem taxa
+│   │   ├── Titular.php                         <- Entidade imutável do correntista
+│   │   ├── ContaBancaria.php                   <- Superclasse abstrata
+│   │   ├── ContaCorrente.php                   <- Subclasse com cheque especial e taxa
+│   │   └── ContaPoupanca.php                   <- Subclasse com rendimento e sem taxa
 │   └── Exceptions/
-│       ├── ContaException.php             <- Exceção base do domínio
-│       ├── SaldoInsuficienteException.php <- Falha por fundos insuficientes
-│       └── ValorInvalidoException.php     <- Valores negativos ou nulos
-├── app_banco.php                  <- Simulador visual de operações bancárias
-└── README.md                      <- Documentação e testes
+│       ├── ContaException.php                  <- Exceção base do domínio
+│       ├── SaldoInsuficienteException.php      <- Falha por fundos insuficientes
+│       └── ValorInvalidoException.php          <- Valores negativos ou nulos
+├── app_banco.php                               <- Simulador visual de operações bancárias
+└── README.md                                   <- Documentação e testes
 ```
+
+## Criação das Exceções de Domínio
+
+## Entidade de Titularidade com Imutabilidade (`readonly`)
+
+## Criação da SuperClasse Abtrata de Conta Bancaria
+
+## Criação das Classe Hendeiras
+
+## Criação da Tela Visual
+
+Desafios
+
+
+
+ f

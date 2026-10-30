@@ -1,6 +1,12 @@
 <?php
 declare(strict_types=1);
 
+namespace App\Controllers;
+
+use App\Core\Controller;
+use App\Core\Logger;
+use App\Models\Produto;
+
 final class ProdutoController extends Controller {
 
     //listar todos os produtos
@@ -28,16 +34,20 @@ final class ProdutoController extends Controller {
             $this->renderizar('produtos/criar', ['titulo' => 'Novo Insumo', 'erro' => 'Falha CSRF.']);
             return;
         }
+        //pego as informaç~eos do formulário
         $nome = trim($_POST['nome'] ?? '');
         $cat  = trim($_POST['categoria'] ?? '');
         $preco = (float)($_POST['preco'] ?? 0.0);
         $est  = (int)($_POST['estoque'] ?? 0);
 
+        //verifico se não tem nada vazio
         if ($nome !== '' && $cat !== '' && $preco > 0.0 && $est >= 0) {
             Produto::salvar($nome, $cat, $preco, $est);
             Logger::info("Novo insumo cadastrado no almoxarifado", ['nome' => $nome, 'categoria' => $cat]);
             $this->redirecionar('/produtos');
         }
+        // se alguma informaçõ não form preenchida no formulário , 
+        // renderiza a tela com a mensagem de falha
         $this->renderizar('produtos/criar', [
             'titulo'    => 'Novo Insumo',
             'erro'      => 'Preencha todos os campos corretamente.',
@@ -45,4 +55,4 @@ final class ProdutoController extends Controller {
         ]);
     }
 
-} 
+}

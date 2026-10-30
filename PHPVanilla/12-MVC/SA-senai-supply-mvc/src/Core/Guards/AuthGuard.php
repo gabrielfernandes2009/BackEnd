@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+namespace App\Core\Guard;
+
+use App\Core\Logger;
+
 final class AuthGuard {
     //Guard responsável por validar autenticação de sessão, perfil e auditar acessos
 

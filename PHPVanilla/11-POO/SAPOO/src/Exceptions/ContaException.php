@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+class ContaException extends RuntimeException {}
+
 //Dispara quando uma operação recebe valores monetários nulos ou negativos
 final class ValorInvalidoException extends ContaException {
     public function __construct(float $valor)

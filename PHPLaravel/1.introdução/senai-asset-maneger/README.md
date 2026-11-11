@@ -138,3 +138,48 @@ Execute a sequência de 7 testes de validação técnica no laboratório:
 7. **Teste 7 — Verificação do Painel de Saúde (`php artisan about`):**  
    Execute `php artisan about` no terminal.  
    *Resultado Esperado:* Todos os indicadores técnicos devem estar validados em verde.
+
+# Continuando a aplicação - Criação do Módulo Gerenciamento de Clientes
+
+## Criação do Model e Migração do Banco de Dados
+
+Criar o arquivo de migração e o model com o comando 
+
+`php artisan make:model Cliente -m`
+
+obs: ao usar a flag `-m` o Laravel cria 2 arquivos o Model e o migration
+
+- um arquivo no `databa/migration` -> inserir a tabela no banco
+- um arquivo no `app/Model` -> gerenciador do Modelo de relacional
+
+comando para Automação do Banco
+
+`php artisan migrate`
+
+## Criar o Controller de Recurso para a Entidade Cliente
+
+Executar o Comando
+
+`php artisan make:controller ClienteController --resource`
+
+>obs: ao usar flag `--resource` são criados 7 métodos automaticamente dentro do controller
+
+- um arquivo é criado em `app/Http/Controllers/ClienteController.php`
+
+contendo os 7 método de assinatura do resource
+
+## Criar as Rotas Nomeadas para os Controllers dentro do Arquivo (`routes/web.php`)
+
+Depois de criar o model, executar a migração e implemetar o controller, vamso declarar as rots do módulo em `routes/web.php`
+
+Uso do elemento Resource para gerar Todas as Rotas do Controller
+
+`Route::resource()` => Gera todas as rotas do Controller
+
+## Contrução das Views Blade
+
+Criar o diretório `resources/views/clientes` => 
+
+Criar os Arquivos dentro da pasta blade
+
+index.blade.php

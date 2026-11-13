@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\AtivoController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProdutosController;
 use Illuminate\Support\Facades\Route;
 
 //Rota Principal da Minha aplicação : Dashboard de Ativos Fabris
@@ -20,3 +21,4 @@ Route::get("/clientes/setor/{setor?}", [ClienteController::class, "filtrarPorSet
 //Rota RESTful (GET, POST, PUT/PATCH, DELETE)
 Route::resource("clientes", ClienteController::class)->whereNumber("cliente");
 
+Route::resource("produtos", ProdutosController::class)->whereNumber("produtos");

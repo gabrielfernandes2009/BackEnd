@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-// ==========================================
-// CONFIGURAÇÕES E DADOS MOCKADOS
-// ==========================================
+// comtrole
 
 const CATEGORIAS_PERMITIDAS = ['Eletrônicos', 'Mecânica', 'Consumíveis', 'Serviços'];
 const CONDICOES_PAGAMENTO = ['À Vista', '30 dias', '60 dias', '90 dias'];
@@ -99,9 +97,8 @@ $cotacoesAbertas = [
     ]
 ];
 
-// ==========================================
+
 // FUNÇÕES ISOLADAS (REUTILIZÁVEIS)
-// ==========================================
 
 function filtrarCotacoes(array $cotacoes, string $fornecedor = '', ?float $valorMaximo = null): array {
     return array_filter($cotacoes, function($cotacao) use ($fornecedor, $valorMaximo) {
@@ -161,7 +158,7 @@ function s(string $valor): string {
 }
 
 
-// CONTROLE DE FLUXO (PROCESSAMENTO)
+// CONTROLE DE FLUXO (Processamento)
 
 $filtroFornecedor = '';
 $filtroValor = null;

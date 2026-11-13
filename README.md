@@ -2540,3 +2540,42 @@ Botão de Exclusão Destrutiva (DELETE):
 </form>
 ```
 
+### Semana 15 - Motor de Templates `Blade`, Herança de Layouts e Componentes do Laravel
+
+**Tema**:  O Template Blade , Compilação e Cache de Views, Interpolação de Dados , Proteção contra XSS, Diretivas Condicionais e de Fluxo, Laços de Repetição e Iteração. Herança de layouts Mestres.
+
+#### **1. A Camada de Visualização Blade**
+
+Nas Semanas Anteriores construimos as aplicações do Laravel utilizando  as seguntes bases:
+- Semana 13 : dominamos a infraestrutura do Laravel, o ambiente enxuto, o arquivo .env e os comandos do Artisan CLI.
+- Semana 14: exploramos o roteamento RESTful, verbos HTTP (GET, POST, PUT, DELETE), parâmetros e Resource Controllers.
+
+Nesta Semana iremos estudar a intterface visual da aplicação e a diferença entre PHP vanila e o PHP Laravel neste quesito.
+
+**Exemplo de uso daa Camada de Visualização no PHPP Vanilla**
+
+```php
+<!-- ARQUIVO LEGADO: lista_ordens.php (O PESADELO DA MANUTENÇÃO) -->
+<!DOCTYPE html>
+<html>
+<head><title>Sistema de Manutenção</title></head>
+<body>
+    <header><h1>SENAI Manutenção</h1><nav>Menu...</nav></header>
+    <?php
+    // Mistura de lógica de banco e HTML solto
+    $ordens = $pdo->query("SELECT * FROM ordens")->fetchAll();
+    foreach ($ordens as $o) {
+        // Vulnerabilidade Crítica de XSS: Sem sanitização na saída
+        echo "<div>" . $o['titulo'] . " - " . $o['responsavel'] . "</div>";
+    }
+    ?>
+    <footer>SENAI 2026</footer>
+</body>
+</html>
+```
+
+**Os Problemas da Abordagem PHP Vanilla**:
+
+1. **Duplicidade de Códigos**: Se a aplicação possuir 30 telas, as tags `<DOCTYPE html>` `<head>` e outras tags como menus, rodapés e cabeçalhos deverão ser copiadas e coladas as 30 vezes. Se o logo da empresa mudar, por exemplo, o desenvolvedor terá que editar 30 vezes os arquivos manualmente.
+2. **Vulnerabilidade e Ataques XSS**: Ao utilizarmos `echo $variavel` sem `htmlspecialchars()`, qualquer script malicioso pode ser gravado no banco de dados (ex: `<script>RoubarCookies</script>`) e será executado silenciosamente no navegador do usuário.
+3. 
